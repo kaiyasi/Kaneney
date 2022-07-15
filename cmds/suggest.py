@@ -1,5 +1,6 @@
 
 import datetime
+from re import A
 from webbrowser import get
 from core.classes import Cog_extension
 import discord
@@ -30,7 +31,7 @@ class Suggest(Cog_extension):
         await report.send(embed=embed)
 
     @commands.command()
-    async def editmessage(self,ctx, chann: int, id: int, *, newmsg: str):
+    async def edit(self,ctx, chann: int, id: int,):
         try:
             cha = self.bot.get_channel(chann)
             msg = await cha.fetch_message(id)
@@ -40,8 +41,9 @@ class Suggest(Cog_extension):
         if msg.author != ctx.guild.me:
             await ctx.send("那個訊息TMD不是我說的")
             return
-        owo = await msg.edit(content=newmsg)
-        await ctx.send(f'修改完畢[點我傳送AWA]({newmsg.jump_url})')
+        
+        print(msg.embeds[0])
+
 
     @commands.command()
     async def say(self,ctx,thin):
